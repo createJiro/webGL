@@ -1,0 +1,22 @@
+{
+  "name": "webGL",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/createJiro/webGL.git",
+  "author": "森下　健一 <ken_morishita@galboa.co.jp>",
+  "license": "MIT",
+  "devDependencies": {
+    "@babel/core": "^7.3.3",
+    "@babel/preset-env": "^7.3.1",
+    "babel-loader": "8.0.0",
+    "copy-webpack-plugin": "^4.6.0",
+    "raw-loader": "^1.0.0",
+    "webpack": "^4.29.5",
+    "webpack-cli": "^3.2.3",
+    "webpack-dev-server": "^3.1.14",
+    "write-file-webpack-plugin": "^4.5.0"
+  },
+  "dependencies": {
+    "phaser": "3.0.0"
+  }
+}
