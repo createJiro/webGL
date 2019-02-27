@@ -23,18 +23,23 @@ export default class HelloWorldScene extends Phaser.Scene {
 
     touchTest(){
 
+      let rate = 1.7;
+
       // 文字表示
       // text(位置x,位置y,中身,設定)
       // setOrigin : x・yの詰め (1,1)だと右詰め・上詰め
       // setInteractive : タッチイベント用
       //let click = this.add.text(250, 150, 'Click', { fill: '#000' }).setOrigin(0.5).setInteractive();
-      let click = this.add.text(this.centerX(), this.centerY() -160, 'もっとプリンをよこすの', { fontSize: '32px', fontFamily:'Nico Moji', fill: '#000' }).setOrigin(0.5);
+      let click = this.add.text(this.centerX(), this.centerY() -160 * rate, 'もっとプリンをよこすの', { fontSize: '32px', fontFamily:'Nico Moji', fill: '#000' }).setOrigin(0.5);
+      click.setScale(rate);
 
       let count = 0;
-      let countText = this.add.text(this.centerX(), this.centerY() + 150, this.countPrin(count), { fontSize: '32px', fontFamily:'Nico Moji', fill: '#000' }).setOrigin(0.5);
-      
+      let countText = this.add.text(this.centerX(), this.centerY() + 150 * rate, this.countPrin(count), { fontSize: '32px', fontFamily:'Nico Moji', fill: '#000' }).setOrigin(0.5);
+      countText.setScale(rate);
+
       // スプライトの設定
-      let sprite = this.add.sprite(this.centerX(), this.centerY() , 'miyako').setScale(1);
+      let sprite = this.add.sprite(this.centerX(), this.centerY() , 'miyako');
+      sprite.setScale(rate);
 
       // アニメーションの設定
       let miyakoAnimation = this.anims.create({
