@@ -26,8 +26,8 @@ export default class StartScene extends Phaser.Scene {
       active: () => this.loaded = true,
       inactive: () => console.log('ロード失敗'),
       custom: {
-        families: ['Noto Sans Japanese'],
-        urls: ['https://fonts.googleapis.com/earlyaccess/notosansjapanese.css'], //I included what this should look like below
+        families: ['Nico Moji'],
+        urls: ['https://fonts.googleapis.com/earlyaccess/nicomoji.css'], //I included what this should look like below
       },
     });
     console.log('completed: ', totalComplete);

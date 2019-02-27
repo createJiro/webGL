@@ -10,12 +10,14 @@ export default class HelloWorldScene extends Phaser.Scene {
       // atlasの画像読み込み
       this.load.atlas('cube', 'assets/animations/cube.png', 'assets/animations/cube.json');
       this.load.spritesheet('mummy', 'assets/animations/mummy37x45.png', { frameWidth: 37, frameHeight: 45 });
+      this.load.spritesheet('miyako', 'assets/animations/miyako.png', { frameWidth: 505, frameHeight: 277 });
       
     }
 
     create() {
 
-      this.animeTest();
+      this.touchTest();
+      //this.animeTest();
 
     }
 
@@ -26,21 +28,42 @@ export default class HelloWorldScene extends Phaser.Scene {
       // setOrigin : x・yの詰め (1,1)だと右詰め・上詰め
       // setInteractive : タッチイベント用
       //let click = this.add.text(250, 150, 'Click', { fill: '#000' }).setOrigin(0.5).setInteractive();
-      let click = this.add.text(this.centerX(), this.centerY(), 'Click', { fontFamily:'Noto Sans Japanese', fill: '#000' }).setOrigin(0.5).setInteractive();
+      let click = this.add.text(this.centerX(), this.centerY() -160, 'もっとプリンをよこすの', { fontSize: '32px', fontFamily:'Nico Moji', fill: '#000' }).setOrigin(0.5);
 
       let count = 0;
-      let countText = this.add.text(this.centerX(), this.centerY() + 50, String(count), { fill: '#000' }).setOrigin(0.5);
+      let countText = this.add.text(this.centerX(), this.centerY() + 150, this.countPrin(count), { fontSize: '32px', fontFamily:'Nico Moji', fill: '#000' }).setOrigin(0.5);
+      
+      // スプライトの設定
+      let sprite = this.add.sprite(this.centerX(), this.centerY() , 'miyako').setScale(1);
+
+      // アニメーションの設定
+      let miyakoAnimation = this.anims.create({
+        key: 'prin',
+        frames: this.anims.generateFrameNumbers('miyako', { start: 1, end: 2 }),
+        frameRate: 8,
+        repeat: 1,
+        onComplete: function(){ sprite.setTexture('miyako'); },
+      });
 
       // タッチ判定（離れた際）
-      click.on('pointerup', function(pointer, localX, localY, event){
+      this.input.on('pointerup', function(pointer, localX, localY, event){
         
         count++;
 
         // 文字表示
-        countText.setText(String(count));
+        //countText.setText(this.countPrin(count));
+        // ↑ファンクションが読めない
+        countText.setText('プリン ' + String(count) + ' こ');
+
+        // アニメーションの再生
+        sprite.anims.play('prin');
 
       })
 
+    }
+
+    countPrin(count){
+      return 'プリン ' + String(count) + ' こ';
     }
 
     animeTest(){
@@ -65,23 +88,17 @@ export default class HelloWorldScene extends Phaser.Scene {
       });
   
       // スプライトの設定
-      var sprite = this.add.sprite(50, 300, 'mummy').setScale(0.5);
-      // アニメーションの再生
-      sprite.play('walk');
+      // var sprite = this.add.sprite(50, 300, 'mummy').setScale(0.5);
+      // // アニメーションの再生
+      // sprite.play('walk');
 
-      // tweenを使用した移動
-      this.tweens.add({
-          targets: sprite,
-          x: 100,
-          duration: 1000,
-          ease: 'Linear'
-      });
-
-      sprite.on('animationrepeat-walk', function () {
-        
-        console.log("animationrepeat-walk");
-
-      }, this);
+      // // tweenを使用した移動
+      // this.tweens.add({
+      //     targets: sprite,
+      //     x: 100,
+      //     duration: 1000,
+      //     ease: 'Linear'
+      // });
 
     }
 
